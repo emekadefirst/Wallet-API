@@ -7,7 +7,6 @@ class User(SQLModel, table=True):
     username: str = Field(default=None, unique=True, max_length=15)
     email: str = Field(default=None, unique=True, max_length=30)
     password: str
-
     account: Optional["Account"] = Relationship(back_populates="user")
 
 class Account(SQLModel, table=True):
@@ -21,7 +20,6 @@ class Account(SQLModel, table=True):
     nin: int
     address: Optional[str] = Field(max_length=300)
     profile_image: str
-
     user: Optional[User] = Relationship(back_populates="account")
     account_number: Optional["AccountNumber"] = Relationship(back_populates="account")
     wallet: Optional["Wallet"] = Relationship(back_populates="account")
