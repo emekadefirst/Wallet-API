@@ -1,4 +1,4 @@
-from src.session import add
+from src.sessions.user import *
 from src.db import create_db_and_tables
 
 def main():

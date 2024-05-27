@@ -1,6 +1,6 @@
-from .db import engine
+from ..db import engine
 from sqlmodel import Session, select
-from .models import User, Account, AccountNumber, Wallet
+from ..models import User, Account, AccountNumber, Wallet
 
 
 class UserSession:
@@ -32,6 +32,25 @@ class UserSession:
             user = session.get(User, user.id)
             return user
         
+    def update(self):
+        with Session(engine) as session:
+            user = session.get(User, user.id)
+            user.username = self.username
+            user.email = self.email
+            user.password =  self.password
+            session.commit()
+            session.refresh(user)
+            return f"User updated with ID: {user.id}"
+        
+    def delete(self):
+        with Session(engine) as session:
+            user = session.get(User, user.id)
+            session.delete(user)
+            session.commit()
+            return user  
+        
+        
+    
 
 
 
