@@ -1,6 +1,6 @@
 from ..db import engine
 from sqlmodel import Session, select
-from ..models import Account
+from src.models.account import Account, AccountNumber
 
 class AccountSession:
     def __init__(self, user_id: int, firstname: str, lastname: str, othername: str, 

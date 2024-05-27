@@ -1,6 +1,6 @@
 from ..db import engine
 from sqlmodel import Session, select
-from ..models import User, Account, AccountNumber, Wallet
+from src.models.user import User
 
 
 class UserSession:

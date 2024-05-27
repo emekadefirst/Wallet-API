@@ -1,10 +1,5 @@
-from src.sessions.user import *
-from src.db import create_db_and_tables
-
-def main():
-    create_db_and_tables()
-    # add("emeka", "edf@mail.com", "edf@mail.com")
-
-
-if __name__ == "__main__":
-    main()
+from src.models.wallet import Wallet
+from src.models.account import Account, AccountNumber
+from src.models.user import User
+from src.sessions.user import UserSession
+from src.sessions.acount import AccountSession
