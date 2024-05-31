@@ -8,7 +8,7 @@ class WalletSession:
         self.account_id = account_id
         self.balance = balance
 
-    def create(self) -> str:
+    def create(self):
         try:
             with Session(engine) as session:
                 wallet = Wallet(
@@ -21,19 +21,6 @@ class WalletSession:
                 return f"Wallet created with ID: {wallet.id}"
         except Exception as e:
             return f"Error in creating wallet: {e}"
-    
-    @staticmethod   
-    def get_all():
-        with Session(engine) as session:
-            statement = select(Wallet)
-            response = session.exec(statement)
-            return response.all()
-        
-    @staticmethod
-    def get_by_id(wallet_id: int):
-        with Session(engine) as session:
-            wallet = session.get(Wallet, wallet_id)
-            return wallet
 
     def update(self, wallet_id: int) -> str:
         try:
@@ -49,3 +36,14 @@ class WalletSession:
                     return f"Wallet with ID: {wallet_id} not found"
         except Exception as e:
             return f"Error in updating wallet: {e}"
+        
+def get_by_id(wallet_id: int):
+    with Session(engine) as session:
+        wallet = session.get(Wallet, wallet_id)
+        return wallet        
+    
+def get_all():
+    with Session(engine) as session:
+        statement = select(Wallet)
+        response = session.exec(statement)
+        return response.all()
