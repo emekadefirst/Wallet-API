@@ -1,6 +1,7 @@
-from ..db import engine
+from database import engine
+from .model import User
 from sqlmodel import Session, select
-from src.models.user import User
+
 
 
 class UserSession:

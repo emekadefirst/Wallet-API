@@ -1,5 +1,5 @@
-from ..db import engine
-from src.models.wallet import Wallet
+from main import engine
+from model import Wallet
 from sqlmodel import Session, select
 
 

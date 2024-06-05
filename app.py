@@ -1,5 +1,14 @@
-from server.settings import app 
+from fastapi import APIRouter, HTTPException
+from user.schema import UserSerializer
+from user.session import UserSession
 
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+auth = APIRouter()
+
+@auth.post('/user')
+def create_user(user: UserSerializer):
+    try:
+        data = UserSession(user)
+        data.add()
+        return {"message": "User created successfully", "user": data}
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
